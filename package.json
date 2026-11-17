@@ -1,0 +1,23 @@
+{
+  "name": "residencial-senior-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Site institucional para residencial sênior — acolhedor, moderno e focado em conversão pelo WhatsApp.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node servidor.js"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tailwindcss": "^4.1.11",
+    "vite": "^6.0.7"
+  }
+}

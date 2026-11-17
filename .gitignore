@@ -1,0 +1,20 @@
+# Dependências
+node_modules/
+
+# Build (gere com: npm run build)
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Variáveis de ambiente
+.env
+.env.*

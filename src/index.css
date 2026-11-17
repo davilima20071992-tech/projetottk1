@@ -1,0 +1,766 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   FONTES AUTO-HOSPEDADAS (sem dependência externa, carregamento rápido)
+   ========================================================================== */
+@font-face {
+  font-family: "Fraunces";
+  src: url("./assets/fonts/fraunces-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("./assets/fonts/manrope-var.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   TOKENS DE DESIGN (Tailwind v4 — gera utilitários como bg-cream, text-forest)
+   ========================================================================== */
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+
+  --color-cream: #fbf9f5;
+  --color-cream-2: #f6f2ea;
+  --color-sand: #efe6d8;
+  --color-sand-2: #e3d6c2;
+  --color-line: #e7e0d3;
+
+  --color-olive-50: #f2f4ee;
+  --color-olive: #7e8f66;
+  --color-olive-600: #6b7c55;
+
+  --color-forest: #2e4034;
+  --color-forest-700: #25352b;
+  --color-forest-900: #1b2620;
+
+  --color-clay: #a98c6a;
+  --color-ink: #2b2a26;
+  --color-muted: #6e6a62;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--color-forest-900);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--color-olive);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-olive-600);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* ==========================================================================
+   LAYOUT  →  todos os estilos de componentes ficam na camada `components`,
+   para que os utilitários do Tailwind (ex.: lg:hidden, text-white) sempre
+   tenham precedência sobre as classes customizadas.
+   ========================================================================== */
+@layer components {
+
+.container-x {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 768px) {
+  .container-x {
+    padding-inline: 2rem;
+  }
+}
+
+.section {
+  padding-block: 4.5rem;
+}
+@media (min-width: 768px) {
+  .section {
+    padding-block: 6.5rem;
+  }
+}
+
+/* ==========================================================================
+   ELEMENTOS DE MARCA
+   ========================================================================== */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-olive-600);
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.lead {
+  font-size: 1.0625rem;
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+@media (min-width: 768px) {
+  .lead {
+    font-size: 1.125rem;
+  }
+}
+
+/* ==========================================================================
+   BOTÕES
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  padding: 0.9rem 1.65rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--color-forest);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--color-forest-700);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -18px rgba(27, 38, 32, 0.85);
+}
+
+.btn-soft {
+  background: #fff;
+  color: var(--color-forest);
+  border-color: var(--color-line);
+}
+.btn-soft:hover {
+  border-color: var(--color-olive);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -20px rgba(46, 64, 52, 0.6);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-forest);
+  border-color: rgba(46, 64, 52, 0.3);
+}
+.btn-outline:hover {
+  background: rgba(46, 64, 52, 0.06);
+  border-color: rgba(46, 64, 52, 0.55);
+}
+
+.btn-light {
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--color-forest);
+}
+.btn-light:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-lg {
+  padding: 1.1rem 2.1rem;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   CARTÕES E SUPERFÍCIES
+   ========================================================================== */
+.card {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 1.5rem;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -40px rgba(46, 64, 52, 0.55);
+  border-color: var(--color-sand-2);
+}
+
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   ANIMAÇÕES DE ROLAGEM
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-delay-1 {
+  transition-delay: 0.09s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.18s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.27s;
+}
+.reveal-delay-4 {
+  transition-delay: 0.36s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ==========================================================================
+   CABEÇALHO
+   ========================================================================== */
+.header-shell {
+  background: rgba(251, 249, 245, 0.82);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+.header-shell.is-stuck {
+  border-bottom-color: var(--color-line);
+  box-shadow: 0 12px 30px -26px rgba(46, 64, 52, 0.7);
+  background: rgba(251, 249, 245, 0.94);
+}
+
+.nav-link {
+  position: relative;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  padding-block: 0.4rem;
+  transition: color 0.2s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1.5px;
+  width: 100%;
+  background: var(--color-olive-600);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover {
+  color: var(--color-forest);
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.nav-link.is-active {
+  color: var(--color-forest);
+}
+
+.mobile-panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.mobile-panel.is-open {
+  max-height: 34rem;
+}
+.mobile-link {
+  display: block;
+  padding-block: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-line);
+  transition: color 0.2s ease, padding-left 0.25s ease;
+}
+.mobile-link:hover {
+  color: var(--color-forest);
+  padding-left: 0.4rem;
+}
+
+/* Botão hambúrguer */
+.burger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.burger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--color-forest);
+  border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+}
+.burger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   GALERIA (ESTRUTURA)
+   ========================================================================== */
+.gallery-tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 10.5rem;
+  overflow: hidden;
+  border-radius: 1.15rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-sand);
+  cursor: pointer;
+  padding: 0;
+}
+.gallery-tile img {
+  width: 100%;
+  height: 100%;
+  min-height: 10.5rem;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 1024px) {
+  .gallery-tile,
+  .gallery-tile img {
+    min-height: 13rem;
+  }
+}
+.gallery-tile:hover img,
+.gallery-tile:focus-visible img {
+  transform: scale(1.06);
+}
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(20, 26, 22, 0.78) 0%, rgba(20, 26, 22, 0.18) 45%, transparent 75%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.gallery-tile:hover .gallery-overlay,
+.gallery-tile:focus-visible .gallery-overlay {
+  opacity: 1;
+}
+@media (hover: none) {
+  .gallery-overlay {
+    opacity: 1;
+  }
+}
+.gallery-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: left;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.85);
+}
+.gallery-caption strong {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+.gallery-zoom {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-forest);
+}
+
+/* ==========================================================================
+   LIGHTBOX DA GALERIA
+   ========================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 26, 22, 0.94);
+  padding: 1rem;
+  animation: fade-in 0.25s ease;
+}
+.lightbox img {
+  max-width: min(92vw, 70rem);
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.9);
+}
+.lightbox-btn {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  backdrop-filter: blur(6px);
+}
+.lightbox-btn:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* ==========================================================================
+   ACORDEÃO (FAQ)
+   ========================================================================== */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.accordion-panel.is-open {
+  grid-template-rows: 1fr;
+}
+.accordion-panel > div {
+  overflow: hidden;
+}
+.accordion-icon {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.accordion-icon.is-open {
+  transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   LINHA DO TEMPO (ROTINA)
+   ========================================================================== */
+.timeline {
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.7rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-sand-2) 8%,
+    var(--color-sand-2) 92%,
+    transparent
+  );
+}
+@media (min-width: 640px) {
+  .timeline::before {
+    left: 9.5rem;
+  }
+}
+.timeline-item {
+  position: relative;
+}
+.timeline-dot {
+  position: absolute;
+  left: 0.35rem;
+  top: 0.6rem;
+  width: 0.78rem;
+  height: 0.78rem;
+  border-radius: 999px;
+  background: var(--color-olive);
+  box-shadow: 0 0 0 5px #f8f5ef;
+}
+@media (min-width: 640px) {
+  .timeline-dot {
+    left: 9.11rem;
+    top: 0.45rem;
+  }
+}
+.timeline-time {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-forest);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   FORMULÁRIOS
+   ========================================================================== */
+.field {
+  width: 100%;
+  border-radius: 0.85rem;
+  border: 1px solid var(--color-line);
+  background: #fff;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--color-ink);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.field::placeholder {
+  color: #a5a099;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--color-olive);
+  box-shadow: 0 0 0 4px rgba(126, 143, 102, 0.15);
+}
+.field.has-error {
+  border-color: #c0705f;
+  box-shadow: 0 0 0 4px rgba(192, 112, 95, 0.12);
+}
+textarea.field {
+  min-height: 8rem;
+  resize: vertical;
+}
+select.field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236E6A62' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+.field-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-forest-700);
+  margin-bottom: 0.4rem;
+}
+.form-note {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+.error-text {
+  font-size: 0.76rem;
+  color: #b0574a;
+  margin-top: 0.3rem;
+}
+
+/* ==========================================================================
+   BOTÃO FLUTUANTE DO WHATSAPP
+   ========================================================================== */
+.fab-wa {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #25d366;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.85rem;
+  box-shadow: 0 18px 40px -18px rgba(37, 211, 102, 0.85);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.fab-wa:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 24px 46px -18px rgba(37, 211, 102, 0.95);
+}
+.fab-wa .fab-label {
+  display: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding-right: 0.5rem;
+}
+@media (min-width: 640px) {
+  .fab-wa {
+    padding: 0.8rem 1.15rem;
+  }
+  .fab-wa .fab-label {
+    display: inline;
+    padding-right: 0;
+  }
+}
+.fab-pulse::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  border: 2px solid rgba(37, 211, 102, 0.55);
+  animation: pulse-ring 2.6s ease-out infinite;
+}
+
+/* ==========================================================================
+   UTILITÁRIOS
+   ========================================================================== */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.16);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+.animate-float {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+} /* fim @layer components */
+
+/* Regra fora da camada de propósito: vence utilitários como `border-line`. */
+.timeline li:last-child .timeline-body {
+  border-bottom-color: transparent;
+  padding-bottom: 0;
+}
